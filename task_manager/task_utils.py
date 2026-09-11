@@ -6,14 +6,12 @@ tasks = []
 
 # Implement add_task function
 def add_task(title, description, due_date):
-    if not validate_task_title(title):
-        print("Error: Invalid task title.")
-        return False
-    if not validate_task_description(description):
-        print("Error: Invalid task description.")
-        return False
-    if not validate_due_date(due_date):
-        print("Error: Invalid due date format. Please use YYYY-MM-DD.")
+    try:
+        validate_task_title(title)
+        validate_task_description(description)
+        validate_due_date(due_date)
+    except ValueError as e:
+        print(f"Error: {e}")
         return False
 
     task = {
@@ -54,10 +52,7 @@ def view_pending_tasks(tasks=tasks):
 # Implement calculate_progress function
 def calculate_progress(tasks=tasks):
     if not tasks:
-        progress = 0.0
-        print("Progress: 0.0% (0/0 tasks completed)")
-    else:
-        completed_count = sum(1 for t in tasks if t.get("completed", False))
-        progress = (completed_count / len(tasks)) * 100
-        print(f"Progress: {progress:.2f}% ({completed_count}/{len(tasks)} tasks completed)")
+        return 0.0
+    completed_count = sum(1 for t in tasks if t.get("completed", False))
+    progress = (completed_count / len(tasks)) * 100
     return progress
