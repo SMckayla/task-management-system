@@ -1,14 +1,14 @@
 from datetime import datetime
 
 def validate_task_title(title):
-    if not isinstance(title, str) or len(title.strip()) == 0:
+    if len(title) == 0:
         return False
     return True
     
 def validate_task_description(description):
-    if not isinstance(description, str) or len(description.strip()) == 0:
+    if len(description) == 0:
         return False
-    return True    
+    return True   
     
 def validate_due_date(due_date):
     try:
