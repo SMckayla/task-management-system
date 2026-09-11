@@ -1,10 +1,9 @@
 from datetime import datetime
 from task_manager.validation import validate_task_title, validate_task_description, validate_due_date
 
-# Define tasks list
 tasks = []
 
-# Implement add_task function
+
 def add_task(title, description, due_date):
     try:
         validate_task_title(title)
@@ -24,7 +23,7 @@ def add_task(title, description, due_date):
     print("Task added successfully!")
     return True
     
-# Implement mark_task_as_complete function
+
 def mark_task_as_complete(index, tasks=tasks):
     try:
         if 0 <= index < len(tasks):
@@ -38,7 +37,7 @@ def mark_task_as_complete(index, tasks=tasks):
         print("Error: Invalid task index.")
         return False
     
-# Implement view_pending_tasks function
+
 def view_pending_tasks(tasks=tasks):
     pending_tasks = [t for t in tasks if not t.get("completed", False)]
     if not pending_tasks:
@@ -49,7 +48,7 @@ def view_pending_tasks(tasks=tasks):
                 print(f"{i + 1}. Title: {task['title']} | Description: {task['description']} | Due Date: {task['due_date']} | Status: Pending")
     return pending_tasks
 
-# Implement calculate_progress function
+
 def calculate_progress(tasks=tasks):
     if not tasks:
         return 0.0
